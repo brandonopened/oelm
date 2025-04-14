@@ -29,9 +29,54 @@
       .ai-message p:last-child {
         margin-bottom: 0; /* Remove bottom margin from last paragraph */
       }
+      #chat-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+
+      #chat-messages {
+        height: 400px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 20px;
+      }
+
+      .user-message {
+        background-color: #e3f2fd;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+      }
+
+      .ai-message {
+        background-color: #f5f5f5;
+        padding: 10px;
+        margin: 5px 0;
+        border-radius: 5px;
+      }
+
+      #chat-form {
+        display: flex;
+        gap: 10px;
+      }
+
+      #message-input {
+        flex-grow: 1;
+        padding: 10px;
+      }
+
+      button {
+        padding: 10px 20px;
+      }
     </style>
   </head>
-  <body>
+  <body
+    data-course-name="{{ course_name }}"
+    data-topic-name="{{ topic_name }}"
+    data-activity-name="{{ activity_name }}"
+  >
     <div class="container">
       <div class="navigation">
         <a
@@ -41,7 +86,7 @@
         >
       </div>
 
-      <div class="chat-container">
+      <div id="chat-container">
         <div
           id="chat-messages"
           class="chat-messages"
@@ -54,7 +99,7 @@
         </div>
 
         <form
-          class="chat-input"
+          id="chat-form"
           hx-post="{{ request.url_for('chat_post') }}"
           hx-target="#chat-messages"
           hx-swap="beforeend"
@@ -88,5 +133,6 @@
 
     <!-- Add Hyperscript for form handling -->
     <script src="https://unpkg.com/hyperscript.org@0.9.12"></script>
+    <script src="/static/js/chat.js"></script>
   </body>
 </html>
